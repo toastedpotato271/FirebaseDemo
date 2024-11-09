@@ -43,6 +43,14 @@ export default function Home() {
     );
   }
 
+  const handleEdit = async (id) => {
+    const ref = doc(db, 'articles', id)
+      //loading = true
+    deleteDoc(ref).then(
+        //loading false;
+    );
+  }
+
   return (
     <div className="home">
       <h2>Articles</h2>      
@@ -51,6 +59,11 @@ export default function Home() {
           <h3>{article.title}</h3>
           <p>Written by {article.author}</p>
           <Link to={`/articles/${article.id}`}>Read More...</Link>
+          <img 
+            className="icon"
+            onClick={() => handleEdit(article.id)}
+            src={DeleteIcon} alt="edit icon" 
+          />
           <img 
             className="icon"
             onClick={() => handleDelete(article.id)}
